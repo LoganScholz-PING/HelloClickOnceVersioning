@@ -1,0 +1,20 @@
+﻿<Window x:Class="HelloClickOnceVersioning.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HelloClickOnceVersioning"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnACTION1" Click="btnACTION1_Click" Content="LIST ALL" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" Height="50" />
+
+        <TextBox x:Name="txtOUTPUT" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+
+    </Grid>
+</Window>
