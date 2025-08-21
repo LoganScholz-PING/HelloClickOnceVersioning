@@ -16,10 +16,13 @@ namespace HelloClickOnceVersioning
 
         // example path:
         // C:\Users\logans\AppData\Local\Apps\2.0\4M4RDP3A.HRP\5KQ5NXXO.1XO\info..tion_0000000000000000_0001.0000_583f9c8cb22d0c4f\
+        // exe names for testing:
+        // InforJSONDataExposer.exe
+        // LengthGaugeFrontEnd_InforWPF.exe
+
 
         string clickOnceAdditionalAppDataPath = "\\Apps\\2.0\\";
-        //string exeName = "InforJSONDataExposer.exe";
-        string exeName = "LengthGaugeFrontEnd_InforWPF.exe";
+        string programStartExeName = "LengthGaugeFrontEnd_InforWPF.exe";
 
         public class AllAppInfo
         {
@@ -39,6 +42,15 @@ namespace HelloClickOnceVersioning
 
         private void btnACTION1_Click(object sender, RoutedEventArgs e)
         {
+            string exeName = txtEXENAME.Text.Trim();
+
+            if(string.IsNullOrEmpty(exeName))
+            {
+                txtOUTPUT.Clear();
+                txtOUTPUT.AppendText("ERROR: Please enter a valid ClickOnce .exe file name into the text box");
+                return;
+            }
+
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             folder += clickOnceAdditionalAppDataPath;
             AllAppInfo allApps = GetAllClickOnceAppData(folder, exeName);
@@ -68,6 +80,8 @@ namespace HelloClickOnceVersioning
         public MainWindow()
         {
             InitializeComponent();
+
+            txtEXENAME.Text = programStartExeName;
         }
 
 
@@ -88,13 +102,13 @@ namespace HelloClickOnceVersioning
 
         private IList<string> FindAllExeLocationsInAppDataFolder(string folder, string exe)
         {
-            string[] exeLocations = Directory.GetFiles(folder, exeName, SearchOption.AllDirectories);
+            string[] exeLocations = Directory.GetFiles(folder, exe, SearchOption.AllDirectories);
             IList<string> cleanExeLocations = new List<string>(); // only folders that contain both .exe and .exe.manifest make the cut
 
             foreach (string exeLocation in exeLocations)
             {
                 string exeLocationJustFolder = exeLocation.Replace(exe, "");
-                string[] tmp = Directory.GetFiles(exeLocationJustFolder, exeName + ".manifest");
+                string[] tmp = Directory.GetFiles(exeLocationJustFolder, exe + ".manifest");
                 if (tmp.Length > 0)
                 {
                     cleanExeLocations.Add(exeLocation);

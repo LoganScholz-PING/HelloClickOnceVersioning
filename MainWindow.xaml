@@ -12,7 +12,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button x:Name="btnACTION1" Click="btnACTION1_Click" Content="LIST ALL" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" Height="50" />
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button x:Name="btnACTION1" Click="btnACTION1_Click" Content="LIST ALL" FontWeight="Bold" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" Height="50" />
+            <TextBox x:Name="txtEXENAME" Margin="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="400" VerticalAlignment="Stretch" />
+        </StackPanel>
+        
+        
+        
 
         <TextBox x:Name="txtOUTPUT" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
 
